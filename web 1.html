@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传TXT文件</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .upload-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="upload-container">
+        <h2>上传TXT文件</h2>
+        <input type="file" id="txtFile" accept=".txt">
+        <button onclick="uploadFile()">上传</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        function uploadFile() {
+            const fileInput = document.getElementById('txtFile');
+            const statusElement = document.getElementById('status');
+
+            if (fileInput.files.length === 0) {
+                statusElement.textContent = '请选择一个TXT文件';
+                return;
+            }
+
+            const file = fileInput.files[0];
+            if (file.type!== 'text/plain') {
+                statusElement.textContent = '请选择一个有效的TXT文件';
+                return;
+            }
+
+            // 这里无法真正上传文件到服务器，仅作提示
+            statusElement.textContent = `你选择了文件: ${file.name}，但由于这是静态页面，无法真正上传。`;
+        }
+    </script>
+</body>
+
+</html>
